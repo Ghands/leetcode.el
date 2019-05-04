@@ -126,13 +126,13 @@ The elements of :problems has attributes:
 ;; API
 (defconst leetcode--api-root                (concat leetcode--base-url "/api"))
 (defconst leetcode--api-graphql             (concat leetcode--base-url "/graphql"))
-(defconst leetcode--api-all-problems        (concat leetcode--api-root "/problems/all/"))
+(defconst leetcode--api-all-problems        (concat leetcode--api-root "/problemset/all/"))
 ;; submit
-(defconst leetcode--api-submit              (concat leetcode--base-url "/problems/%s/submit/"))
-(defconst leetcode--api-problems-submission (concat leetcode--base-url "/problems/%s/submissions/"))
+(defconst leetcode--api-submit              (concat leetcode--base-url "/problemset/%s/submit/"))
+(defconst leetcode--api-problems-submission (concat leetcode--base-url "/problemset/%s/submissions/"))
 (defconst leetcode--api-check-submission    (concat leetcode--base-url "/submissions/detail/%s/check/"))
 ;; try testcase
-(defconst leetcode--api-try                 (concat leetcode--base-url "/problems/%s/interpret_solution/"))
+(defconst leetcode--api-try                 (concat leetcode--base-url "/problemset/%s/interpret_solution/"))
 
 
 (defun leetcode--referer (value)
@@ -662,7 +662,8 @@ Get current entry by using `tabulated-list-get-entry' and use
                       "dislikes: " (number-to-string dislikes)))
       (insert content)
       (setq shr-current-font t)
-      (leetcode--replace-in-buffer "" "")
+      (leetcode--replace-in-buffer "
+" "")
       ;; NOTE: shr.el can't render "https://xxxx.png", so we use "http"
       (leetcode--replace-in-buffer "https" "http")
       (shr-render-buffer (current-buffer)))
